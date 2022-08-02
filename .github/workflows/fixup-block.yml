@@ -15,7 +15,7 @@ jobs:
     name: Block fixup commits - comment to PR
     needs: block-fixup
     runs-on: ubuntu-latest
-    if: ${ failure() }
+    if: ${{ failure() }}
     steps:
       - uses: actions/github-script@v5
         with:
