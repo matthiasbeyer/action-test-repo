@@ -2,3 +2,7 @@
 
 We test actions here.
 
+
+## License
+
+DWTFYWTPL
