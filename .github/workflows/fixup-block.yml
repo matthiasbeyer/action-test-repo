@@ -17,9 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ failure() }}
     permissions:
-      pull-requests:
-        - read
-        - write
+      pull-requests: write
     steps:
       - uses: actions/github-script@v5
         with:
