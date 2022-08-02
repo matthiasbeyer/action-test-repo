@@ -1,0 +1,29 @@
+name: Block fixup
+
+on:
+  pull_request_target:
+
+jobs:
+  block-fixup:
+    name: Block fixup commits
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: 13rac1/block-fixup-merge-action@v2.0.0
+
+  block-fixup-comment:
+    name: Block fixup commits - comment to PR
+    needs: block-fixup
+    runs-on: ubuntu-latest
+    if: ${ failure() }
+    steps:
+      - uses: actions/github-script@v5
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'PR contains "fixup!"/"squash!" commits. Please squash them when asked!'
+            })
