@@ -1,7 +1,7 @@
 name: Block fixup
 
 on:
-  pull_request_target:
+  pull_request:
 
 jobs:
   block-fixup:
