@@ -7,7 +7,7 @@ on:
 env:
   CARGO_TERM_COLOR: always
   CARGO_INCREMENTAL: 0
-  RUSTFLAGS: -C linker=clang -C link-arg=-fuse-ld=/usr/bin/mold
+  RUSTFLAGS: -C linker=clang -C link-arg=-fuse-ld=mold
 
 jobs:
   cargo-build:
