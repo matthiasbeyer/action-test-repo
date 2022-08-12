@@ -1,0 +1,21 @@
+name: Pull Request Checks
+
+on:
+  push:
+  pull_request:
+
+env:
+  CARGO_TERM_COLOR: always
+  CARGO_INCREMENTAL: 0
+  RUSTFLAGS: -C linker=clang -C link-arg=-fuse-ld=/usr/bin/mold
+
+jobs:
+  cargo-build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dtolnay/rust-toolchain@1.60.0
+      - uses: actions-rs/cargo@v1
+        with:
+          command: build
+
