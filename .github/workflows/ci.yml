@@ -1,0 +1,23 @@
+name: Pull Request Checks
+
+on:
+  push:
+  pull_request:
+
+env:
+  CARGO_TERM_COLOR: always
+  CARGO_INCREMENTAL: 0
+
+jobs:
+  cargo-build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dtolnay/rust-toolchain@1.60.0
+      - uses: rui314/setup-mold@v1
+        with:
+          make-default: true
+      - uses: actions-rs/cargo@v1
+        with:
+          command: build
+
